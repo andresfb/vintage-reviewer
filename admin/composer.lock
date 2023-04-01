@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "24bf914118cc376bd84f1837b0bf554d",
+    "content-hash": "c571524e19e30da8c30b269a2848a7a9",
     "packages": [
         {
             "name": "akaunting/laravel-money",
@@ -74,6 +74,154 @@
                 "source": "https://github.com/akaunting/laravel-money/tree/4.0.1"
             },
             "time": "2023-03-16T14:39:27+00:00"
+        },
+        {
+            "name": "aws/aws-crt-php",
+            "version": "v1.2.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/awslabs/aws-crt-php.git",
+                "reference": "1926277fc71d253dfa820271ac5987bdb193ccf5"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/awslabs/aws-crt-php/zipball/1926277fc71d253dfa820271ac5987bdb193ccf5",
+                "reference": "1926277fc71d253dfa820271ac5987bdb193ccf5",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "^4.8.35||^5.6.3||^9.5",
+                "yoast/phpunit-polyfills": "^1.0"
+            },
+            "suggest": {
+                "ext-awscrt": "Make sure you install awscrt native extension to use any of the functionality."
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "AWS SDK Common Runtime Team",
+                    "email": "aws-sdk-common-runtime@amazon.com"
+                }
+            ],
+            "description": "AWS Common Runtime for PHP",
+            "homepage": "https://github.com/awslabs/aws-crt-php",
+            "keywords": [
+                "amazon",
+                "aws",
+                "crt",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/awslabs/aws-crt-php/issues",
+                "source": "https://github.com/awslabs/aws-crt-php/tree/v1.2.1"
+            },
+            "time": "2023-03-24T20:22:19+00:00"
+        },
+        {
+            "name": "aws/aws-sdk-php",
+            "version": "3.263.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/aws/aws-sdk-php.git",
+                "reference": "1f1ca8866e54aabdcde2aba177196ec2f12ee8a2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/aws/aws-sdk-php/zipball/1f1ca8866e54aabdcde2aba177196ec2f12ee8a2",
+                "reference": "1f1ca8866e54aabdcde2aba177196ec2f12ee8a2",
+                "shasum": ""
+            },
+            "require": {
+                "aws/aws-crt-php": "^1.0.4",
+                "ext-json": "*",
+                "ext-pcre": "*",
+                "ext-simplexml": "*",
+                "guzzlehttp/guzzle": "^6.5.8 || ^7.4.5",
+                "guzzlehttp/promises": "^1.4.0",
+                "guzzlehttp/psr7": "^1.8.5 || ^2.3",
+                "mtdowling/jmespath.php": "^2.6",
+                "php": ">=5.5"
+            },
+            "require-dev": {
+                "andrewsville/php-token-reflection": "^1.4",
+                "aws/aws-php-sns-message-validator": "~1.0",
+                "behat/behat": "~3.0",
+                "composer/composer": "^1.10.22",
+                "dms/phpunit-arraysubset-asserts": "^0.4.0",
+                "doctrine/cache": "~1.4",
+                "ext-dom": "*",
+                "ext-openssl": "*",
+                "ext-pcntl": "*",
+                "ext-sockets": "*",
+                "nette/neon": "^2.3",
+                "paragonie/random_compat": ">= 2",
+                "phpunit/phpunit": "^4.8.35 || ^5.6.3 || ^9.5",
+                "psr/cache": "^1.0",
+                "psr/simple-cache": "^1.0",
+                "sebastian/comparator": "^1.2.3 || ^4.0",
+                "yoast/phpunit-polyfills": "^1.0"
+            },
+            "suggest": {
+                "aws/aws-php-sns-message-validator": "To validate incoming SNS notifications",
+                "doctrine/cache": "To use the DoctrineCacheAdapter",
+                "ext-curl": "To send requests using cURL",
+                "ext-openssl": "Allows working with CloudFront private distributions and verifying received SNS messages",
+                "ext-sockets": "To use client-side monitoring"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.0-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/functions.php"
+                ],
+                "psr-4": {
+                    "Aws\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Amazon Web Services",
+                    "homepage": "http://aws.amazon.com"
+                }
+            ],
+            "description": "AWS SDK for PHP - Use Amazon Web Services in your PHP project",
+            "homepage": "http://aws.amazon.com/sdkforphp",
+            "keywords": [
+                "amazon",
+                "aws",
+                "cloud",
+                "dynamodb",
+                "ec2",
+                "glacier",
+                "s3",
+                "sdk"
+            ],
+            "support": {
+                "forum": "https://forums.aws.amazon.com/forum.jspa?forumID=80",
+                "issues": "https://github.com/aws/aws-sdk-php/issues",
+                "source": "https://github.com/aws/aws-sdk-php/tree/3.263.1"
+            },
+            "time": "2023-03-31T18:21:25+00:00"
         },
         {
             "name": "blade-ui-kit/blade-heroicons",
@@ -282,6 +430,152 @@
             "time": "2022-08-10T22:54:19+00:00"
         },
         {
+            "name": "cocur/slugify",
+            "version": "v4.3.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cocur/slugify.git",
+                "reference": "652234ef5f1be844a2ae1c36ad1b4c88b05160f9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cocur/slugify/zipball/652234ef5f1be844a2ae1c36ad1b4c88b05160f9",
+                "reference": "652234ef5f1be844a2ae1c36ad1b4c88b05160f9",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": "^7.1 || ~8.0.0 || ~8.1.0 || ~8.2.0"
+            },
+            "conflict": {
+                "symfony/config": "<3.4 || >=4,<4.3",
+                "symfony/dependency-injection": "<3.4 || >=4,<4.3",
+                "symfony/http-kernel": "<3.4 || >=4,<4.3",
+                "twig/twig": "<2.12.1"
+            },
+            "require-dev": {
+                "laravel/framework": "^5.0|^6.0|^7.0|^8.0",
+                "latte/latte": "~2.2",
+                "league/container": "^2.2.0",
+                "mikey179/vfsstream": "~1.6.8",
+                "mockery/mockery": "^1.3",
+                "nette/di": "~2.4",
+                "pimple/pimple": "~1.1",
+                "plumphp/plum": "~0.1",
+                "symfony/config": "^3.4 || ^4.3 || ^5.0 || ^6.0",
+                "symfony/dependency-injection": "^3.4 || ^4.3 || ^5.0 || ^6.0",
+                "symfony/http-kernel": "^3.4 || ^4.3 || ^5.0 || ^6.0",
+                "symfony/phpunit-bridge": "^5.4 || ^6.0",
+                "twig/twig": "^2.12.1 || ~3.0",
+                "zendframework/zend-modulemanager": "~2.2",
+                "zendframework/zend-servicemanager": "~2.2",
+                "zendframework/zend-view": "~2.2"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Cocur\\Slugify\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Florian Eckerstorfer",
+                    "email": "florian@eckerstorfer.co",
+                    "homepage": "https://florian.ec"
+                },
+                {
+                    "name": "Ivo Bathke",
+                    "email": "ivo.bathke@gmail.com"
+                }
+            ],
+            "description": "Converts a string into a slug.",
+            "keywords": [
+                "slug",
+                "slugify"
+            ],
+            "support": {
+                "issues": "https://github.com/cocur/slugify/issues",
+                "source": "https://github.com/cocur/slugify/tree/v4.3.0"
+            },
+            "time": "2022-12-07T19:48:48+00:00"
+        },
+        {
+            "name": "cviebrock/eloquent-sluggable",
+            "version": "10.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/cviebrock/eloquent-sluggable.git",
+                "reference": "92f456b10337ca97c1cccfcc853a1cf51d2cedd0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/cviebrock/eloquent-sluggable/zipball/92f456b10337ca97c1cccfcc853a1cf51d2cedd0",
+                "reference": "92f456b10337ca97c1cccfcc853a1cf51d2cedd0",
+                "shasum": ""
+            },
+            "require": {
+                "cocur/slugify": "^4.3",
+                "illuminate/config": "^10.0",
+                "illuminate/database": "^10.0",
+                "illuminate/support": "^10.0",
+                "php": "^8.1"
+            },
+            "require-dev": {
+                "limedeck/phpunit-detailed-printer": "^6.0",
+                "mockery/mockery": "^1.4.4",
+                "orchestra/testbench": "^8.0",
+                "pestphp/pest": "2.x-dev"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Cviebrock\\EloquentSluggable\\ServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Cviebrock\\EloquentSluggable\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Colin Viebrock",
+                    "email": "colin@viebrock.ca"
+                }
+            ],
+            "description": "Easy creation of slugs for your Eloquent models in Laravel",
+            "homepage": "https://github.com/cviebrock/eloquent-sluggable",
+            "keywords": [
+                "eloquent",
+                "eloquent-sluggable",
+                "laravel",
+                "lumen",
+                "slug",
+                "sluggable"
+            ],
+            "support": {
+                "issues": "https://github.com/cviebrock/eloquent-sluggable/issues",
+                "source": "https://github.com/cviebrock/eloquent-sluggable/tree/10.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/cviebrock",
+                    "type": "github"
+                }
+            ],
+            "time": "2023-02-16T23:01:35+00:00"
+        },
+        {
             "name": "danharrin/date-format-converter",
             "version": "v0.3.0",
             "source": {
@@ -384,6 +678,82 @@
                 }
             ],
             "time": "2023-03-12T12:17:29+00:00"
+        },
+        {
+            "name": "dariusiii/tmdb-laravel",
+            "version": "v6.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/DariusIII/tmdb-laravel.git",
+                "reference": "0a496a964678dc06fea5178c37fab504770d0679"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/DariusIII/tmdb-laravel/zipball/0a496a964678dc06fea5178c37fab504770d0679",
+                "reference": "0a496a964678dc06fea5178c37fab504770d0679",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "^7.2",
+                "illuminate/support": "^8.0|^9.0|^10.0",
+                "nyholm/psr7": "^1.3",
+                "php": ">=8.0",
+                "php-tmdb/api": "^4.0"
+            },
+            "require-dev": {
+                "doctrine/cache": "^1.8",
+                "illuminate/events": "^8.0|^9.0|^10.0",
+                "monolog/monolog": "^3.0",
+                "phpunit/phpunit": "^7.0|^8.0|^9.0|^10.0",
+                "psr/event-dispatcher": "^1.0",
+                "symfony/event-dispatcher": "^6.0"
+            },
+            "suggest": {
+                "doctrine/cache": "Required if you want to make use of caching features.",
+                "monolog/monolog": "Required if you want to make use of logging features."
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Tmdb\\Laravel\\TmdbServiceProvider"
+                    ],
+                    "aliases": {
+                        "Tmdb": "Tmdb\\Laravel\\Facades\\Tmdb"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tmdb\\Laravel\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Redeman",
+                    "email": "markredeman@gmail.com"
+                }
+            ],
+            "description": "Laravel Package for TMDB ( The Movie Database ) API. Provides easy access to the wtfzdotnet/php-tmdb-api library.",
+            "keywords": [
+                "api",
+                "laravel",
+                "movie",
+                "php",
+                "tmdb",
+                "tv",
+                "tv show",
+                "tvdb",
+                "wrapper"
+            ],
+            "support": {
+                "source": "https://github.com/DariusIII/tmdb-laravel/tree/v6.0.0"
+            },
+            "time": "2023-02-16T17:43:54+00:00"
         },
         {
             "name": "dflydev/dot-access-data",
@@ -929,6 +1299,80 @@
                 "source": "https://github.com/filamentphp/filament"
             },
             "time": "2023-03-30T17:39:12+00:00"
+        },
+        {
+            "name": "filament/spatie-laravel-media-library-plugin",
+            "version": "v2.17.21",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/filamentphp/spatie-laravel-media-library-plugin.git",
+                "reference": "7f538d64fe3f9c30a2f7c169efd8693d70e3c39d"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/filamentphp/spatie-laravel-media-library-plugin/zipball/7f538d64fe3f9c30a2f7c169efd8693d70e3c39d",
+                "reference": "7f538d64fe3f9c30a2f7c169efd8693d70e3c39d",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/support": "^8.6|^9.0|^10.0",
+                "php": "^8.0",
+                "spatie/laravel-medialibrary": "^9.0|^10.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Filament\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Filament support for `spatie/laravel-medialibrary`.",
+            "homepage": "https://github.com/filamentphp/filament",
+            "support": {
+                "issues": "https://github.com/filamentphp/filament/issues",
+                "source": "https://github.com/filamentphp/filament"
+            },
+            "time": "2023-03-31T12:33:30+00:00"
+        },
+        {
+            "name": "filament/spatie-laravel-tags-plugin",
+            "version": "v2.17.21",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/filamentphp/spatie-laravel-tags-plugin.git",
+                "reference": "a964dedc6405493992597e97127d942ff91437bc"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/filamentphp/spatie-laravel-tags-plugin/zipball/a964dedc6405493992597e97127d942ff91437bc",
+                "reference": "a964dedc6405493992597e97127d942ff91437bc",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": "^8.6|^9.0|^10.0",
+                "php": "^8.0",
+                "spatie/laravel-tags": "^4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Filament\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Filament support for `spatie/laravel-tags`.",
+            "homepage": "https://github.com/filamentphp/filament",
+            "support": {
+                "issues": "https://github.com/filamentphp/filament/issues",
+                "source": "https://github.com/filamentphp/filament"
+            },
+            "time": "2023-01-25T18:16:12+00:00"
         },
         {
             "name": "filament/support",
@@ -1869,6 +2313,84 @@
             "time": "2023-03-29T15:09:16+00:00"
         },
         {
+            "name": "laravel/horizon",
+            "version": "v5.15.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/laravel/horizon.git",
+                "reference": "b49be302566365e0e4d517aac9995a8fe20b580e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/laravel/horizon/zipball/b49be302566365e0e4d517aac9995a8fe20b580e",
+                "reference": "b49be302566365e0e4d517aac9995a8fe20b580e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "ext-pcntl": "*",
+                "ext-posix": "*",
+                "illuminate/contracts": "^8.17|^9.0|^10.0",
+                "illuminate/queue": "^8.17|^9.0|^10.0",
+                "illuminate/support": "^8.17|^9.0|^10.0",
+                "nesbot/carbon": "^2.17",
+                "php": "^7.3|^8.0",
+                "ramsey/uuid": "^4.0",
+                "symfony/error-handler": "^5.0|^6.0",
+                "symfony/process": "^5.0|^6.0"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.0",
+                "orchestra/testbench": "^6.0|^7.0|^8.0",
+                "phpstan/phpstan": "^1.10",
+                "phpunit/phpunit": "^9.0",
+                "predis/predis": "^1.1|^2.0"
+            },
+            "suggest": {
+                "ext-redis": "Required to use the Redis PHP driver.",
+                "predis/predis": "Required when not using the Redis PHP driver (^1.1|^2.0)."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Laravel\\Horizon\\HorizonServiceProvider"
+                    ],
+                    "aliases": {
+                        "Horizon": "Laravel\\Horizon\\Horizon"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Laravel\\Horizon\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylor@laravel.com"
+                }
+            ],
+            "description": "Dashboard and code-driven configuration for Laravel queues.",
+            "keywords": [
+                "laravel",
+                "queue"
+            ],
+            "support": {
+                "issues": "https://github.com/laravel/horizon/issues",
+                "source": "https://github.com/laravel/horizon/tree/v5.15.0"
+            },
+            "time": "2023-03-07T17:45:21+00:00"
+        },
+        {
             "name": "laravel/sanctum",
             "version": "v3.2.1",
             "source": {
@@ -2339,6 +2861,76 @@
                 }
             ],
             "time": "2023-02-18T15:32:41+00:00"
+        },
+        {
+            "name": "league/flysystem-aws-s3-v3",
+            "version": "3.12.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/thephpleague/flysystem-aws-s3-v3.git",
+                "reference": "645e14e4a80bd2da8b01e57388e7296a695a80c2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/thephpleague/flysystem-aws-s3-v3/zipball/645e14e4a80bd2da8b01e57388e7296a695a80c2",
+                "reference": "645e14e4a80bd2da8b01e57388e7296a695a80c2",
+                "shasum": ""
+            },
+            "require": {
+                "aws/aws-sdk-php": "^3.220.0",
+                "league/flysystem": "^3.10.0",
+                "league/mime-type-detection": "^1.0.0",
+                "php": "^8.0.2"
+            },
+            "conflict": {
+                "guzzlehttp/guzzle": "<7.0",
+                "guzzlehttp/ringphp": "<1.1.1"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "League\\Flysystem\\AwsS3V3\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Frank de Jonge",
+                    "email": "info@frankdejonge.nl"
+                }
+            ],
+            "description": "AWS S3 filesystem adapter for Flysystem.",
+            "keywords": [
+                "Flysystem",
+                "aws",
+                "file",
+                "files",
+                "filesystem",
+                "s3",
+                "storage"
+            ],
+            "support": {
+                "issues": "https://github.com/thephpleague/flysystem-aws-s3-v3/issues",
+                "source": "https://github.com/thephpleague/flysystem-aws-s3-v3/tree/3.12.2"
+            },
+            "funding": [
+                {
+                    "url": "https://ecologi.com/frankdejonge",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/frankdejonge",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/league/flysystem",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2023-01-17T14:15:08+00:00"
         },
         {
             "name": "league/glide",
@@ -2853,6 +3445,67 @@
             "time": "2023-02-06T13:46:10+00:00"
         },
         {
+            "name": "mtdowling/jmespath.php",
+            "version": "2.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jmespath/jmespath.php.git",
+                "reference": "9b87907a81b87bc76d19a7fb2d61e61486ee9edb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/jmespath/jmespath.php/zipball/9b87907a81b87bc76d19a7fb2d61e61486ee9edb",
+                "reference": "9b87907a81b87bc76d19a7fb2d61e61486ee9edb",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^5.4 || ^7.0 || ^8.0",
+                "symfony/polyfill-mbstring": "^1.17"
+            },
+            "require-dev": {
+                "composer/xdebug-handler": "^1.4 || ^2.0",
+                "phpunit/phpunit": "^4.8.36 || ^7.5.15"
+            },
+            "bin": [
+                "bin/jp.php"
+            ],
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.6-dev"
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/JmesPath.php"
+                ],
+                "psr-4": {
+                    "JmesPath\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                }
+            ],
+            "description": "Declaratively specify how to extract elements from a JSON document",
+            "keywords": [
+                "json",
+                "jsonpath"
+            ],
+            "support": {
+                "issues": "https://github.com/jmespath/jmespath.php/issues",
+                "source": "https://github.com/jmespath/jmespath.php/tree/2.6.1"
+            },
+            "time": "2021-06-14T00:11:39+00:00"
+        },
+        {
             "name": "myclabs/php-enum",
             "version": "1.8.4",
             "source": {
@@ -3309,6 +3962,318 @@
             "time": "2023-02-08T01:06:31+00:00"
         },
         {
+            "name": "nyholm/psr7",
+            "version": "1.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Nyholm/psr7.git",
+                "reference": "f734364e38a876a23be4d906a2a089e1315be18a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Nyholm/psr7/zipball/f734364e38a876a23be4d906a2a089e1315be18a",
+                "reference": "f734364e38a876a23be4d906a2a089e1315be18a",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1",
+                "php-http/message-factory": "^1.0",
+                "psr/http-factory": "^1.0",
+                "psr/http-message": "^1.0"
+            },
+            "provide": {
+                "psr/http-factory-implementation": "1.0",
+                "psr/http-message-implementation": "1.0"
+            },
+            "require-dev": {
+                "http-interop/http-factory-tests": "^0.9",
+                "php-http/psr7-integration-tests": "^1.0",
+                "phpunit/phpunit": "^7.5 || 8.5 || 9.4",
+                "symfony/error-handler": "^4.4"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.4-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Nyholm\\Psr7\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tobias Nyholm",
+                    "email": "tobias.nyholm@gmail.com"
+                },
+                {
+                    "name": "Martijn van der Ven",
+                    "email": "martijn@vanderven.se"
+                }
+            ],
+            "description": "A fast PHP7 implementation of PSR-7",
+            "homepage": "https://tnyholm.se",
+            "keywords": [
+                "psr-17",
+                "psr-7"
+            ],
+            "support": {
+                "issues": "https://github.com/Nyholm/psr7/issues",
+                "source": "https://github.com/Nyholm/psr7/tree/1.5.1"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/Zegnat",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/nyholm",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-06-22T07:13:36+00:00"
+        },
+        {
+            "name": "php-http/discovery",
+            "version": "1.15.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-http/discovery.git",
+                "reference": "3ccd28dd9fb34b52db946abea1b538568e34eae8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-http/discovery/zipball/3ccd28dd9fb34b52db946abea1b538568e34eae8",
+                "reference": "3ccd28dd9fb34b52db946abea1b538568e34eae8",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0|^2.0",
+                "php": "^7.1 || ^8.0"
+            },
+            "conflict": {
+                "nyholm/psr7": "<1.0"
+            },
+            "provide": {
+                "php-http/async-client-implementation": "*",
+                "php-http/client-implementation": "*",
+                "psr/http-client-implementation": "*",
+                "psr/http-factory-implementation": "*",
+                "psr/http-message-implementation": "*"
+            },
+            "require-dev": {
+                "composer/composer": "^1.0.2|^2.0",
+                "graham-campbell/phpspec-skip-example-extension": "^5.0",
+                "php-http/httplug": "^1.0 || ^2.0",
+                "php-http/message-factory": "^1.0",
+                "phpspec/phpspec": "^5.1 || ^6.1 || ^7.3",
+                "symfony/phpunit-bridge": "^6.2"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Http\\Discovery\\Composer\\Plugin",
+                "plugin-optional": true
+            },
+            "autoload": {
+                "psr-4": {
+                    "Http\\Discovery\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com"
+                }
+            ],
+            "description": "Finds and installs PSR-7, PSR-17, PSR-18 and HTTPlug implementations",
+            "homepage": "http://php-http.org",
+            "keywords": [
+                "adapter",
+                "client",
+                "discovery",
+                "factory",
+                "http",
+                "message",
+                "psr17",
+                "psr7"
+            ],
+            "support": {
+                "issues": "https://github.com/php-http/discovery/issues",
+                "source": "https://github.com/php-http/discovery/tree/1.15.3"
+            },
+            "time": "2023-03-31T14:40:37+00:00"
+        },
+        {
+            "name": "php-http/message-factory",
+            "version": "v1.0.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-http/message-factory.git",
+                "reference": "a478cb11f66a6ac48d8954216cfed9aa06a501a1"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-http/message-factory/zipball/a478cb11f66a6ac48d8954216cfed9aa06a501a1",
+                "reference": "a478cb11f66a6ac48d8954216cfed9aa06a501a1",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4",
+                "psr/http-message": "^1.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Http\\Message\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com"
+                }
+            ],
+            "description": "Factory interfaces for PSR-7 HTTP Message",
+            "homepage": "http://php-http.org",
+            "keywords": [
+                "factory",
+                "http",
+                "message",
+                "stream",
+                "uri"
+            ],
+            "support": {
+                "issues": "https://github.com/php-http/message-factory/issues",
+                "source": "https://github.com/php-http/message-factory/tree/master"
+            },
+            "time": "2015-12-19T14:08:53+00:00"
+        },
+        {
+            "name": "php-tmdb/api",
+            "version": "4.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-tmdb/api.git",
+                "reference": "7f7b3c6317b1346e6bc646ad63edb212a2b55584"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-tmdb/api/zipball/7f7b3c6317b1346e6bc646ad63edb212a2b55584",
+                "reference": "7f7b3c6317b1346e6bc646ad63edb212a2b55584",
+                "shasum": ""
+            },
+            "require": {
+                "ext-json": "*",
+                "php": "^7.3 || ^7.4 || ^8.0 || ^8.1",
+                "php-http/discovery": "^1.11",
+                "psr/cache": "^1 || ^2 || ^3",
+                "psr/event-dispatcher": "^1",
+                "psr/event-dispatcher-implementation": "^1",
+                "psr/http-client": "^1",
+                "psr/http-client-implementation": "^1",
+                "psr/http-factory": "^1",
+                "psr/http-factory-implementation": "^1",
+                "psr/http-message": "^1",
+                "psr/log": "^1 || ^2 || ^3",
+                "psr/simple-cache": "^1 || ^2 || ^3",
+                "symfony/options-resolver": ">=4.4 || ^5 || ^6"
+            },
+            "require-dev": {
+                "jeroen/psr-log-test-doubles": "^2.1 || ^3",
+                "monolog/monolog": ">=1.11.0",
+                "nyholm/psr7": "^1.2",
+                "php-http/cache-plugin": "^1.7",
+                "php-http/guzzle7-adapter": "^0.1",
+                "php-http/mock-client": "^1.2",
+                "phpstan/phpstan": "^1.8.1",
+                "phpunit/phpunit": ">=8.5.23 || ^9.3",
+                "slevomat/coding-standard": "^6.4",
+                "squizlabs/php_codesniffer": "^3.5.8",
+                "symfony/cache": ">=4.4 || ^5 || ^6",
+                "symfony/event-dispatcher": ">=4.4 || ^5 || ^6",
+                "vimeo/psalm": "^4"
+            },
+            "suggest": {
+                "monolog/monolog": "Great logger to use, but you can pick any PSR-3 logger you wish.",
+                "php-http/cache-plugin": "When making use of cache, you need to install this plugin.",
+                "psr/cache-implementation": "If you wish to enable caching features, provide an PSR-6 cache implementation.",
+                "psr/log-implementation": "If you wish to enable logging features, provide an PSR-3 logger.",
+                "psr/simple-cache-implementation": "If you wish to enable caching features, provide an PSR-16 cache.",
+                "symfony/cache": "Great cache to use, but you can pick any PSR-6 cache you wish."
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Tmdb\\": "lib/Tmdb"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Roterman",
+                    "email": "michael@wtfz.net",
+                    "homepage": "http://wtfz.net"
+                }
+            ],
+            "description": "PHP wrapper for TMDB (TheMovieDatabase) API v3. Supports two types of approaches, one modelled with repositories, models and factories. And the other by simple array access to RAW data from The Movie Database.",
+            "homepage": "https://github.com/php-tmdb/api",
+            "keywords": [
+                "api",
+                "movie",
+                "php",
+                "tmdb",
+                "tv",
+                "tv show",
+                "tvdb",
+                "wrapper"
+            ],
+            "support": {
+                "issues": "https://github.com/php-tmdb/api/issues",
+                "source": "https://github.com/php-tmdb/api/tree/4.1.3"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=SMLZ362KQ8K8W",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/php-tmdb",
+                    "type": "github"
+                },
+                {
+                    "url": "https://github.com/wtfzdotnet",
+                    "type": "github"
+                }
+            ],
+            "time": "2022-11-04T19:25:12+00:00"
+        },
+        {
             "name": "phpoption/phpoption",
             "version": "1.9.1",
             "source": {
@@ -3382,6 +4347,55 @@
                 }
             ],
             "time": "2023-02-25T19:38:58+00:00"
+        },
+        {
+            "name": "psr/cache",
+            "version": "3.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/php-fig/cache.git",
+                "reference": "aa5030cfa5405eccfdcb1083ce040c2cb8d253bf"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/php-fig/cache/zipball/aa5030cfa5405eccfdcb1083ce040c2cb8d253bf",
+                "reference": "aa5030cfa5405eccfdcb1083ce040c2cb8d253bf",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Psr\\Cache\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "PHP-FIG",
+                    "homepage": "https://www.php-fig.org/"
+                }
+            ],
+            "description": "Common interface for caching libraries",
+            "keywords": [
+                "cache",
+                "psr",
+                "psr-6"
+            ],
+            "support": {
+                "source": "https://github.com/php-fig/cache/tree/3.0.0"
+            },
+            "time": "2021-02-03T23:26:27+00:00"
         },
         {
             "name": "psr/container",
@@ -5648,6 +6662,73 @@
             "time": "2023-02-24T10:42:00+00:00"
         },
         {
+            "name": "symfony/options-resolver",
+            "version": "v6.2.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/options-resolver.git",
+                "reference": "aa0e85b53bbb2b4951960efd61d295907eacd629"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/options-resolver/zipball/aa0e85b53bbb2b4951960efd61d295907eacd629",
+                "reference": "aa0e85b53bbb2b4951960efd61d295907eacd629",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.1",
+                "symfony/deprecation-contracts": "^2.1|^3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\OptionsResolver\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Provides an improved replacement for the array_replace PHP function",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "config",
+                "configuration",
+                "options"
+            ],
+            "support": {
+                "source": "https://github.com/symfony/options-resolver/tree/v6.2.7"
+            },
+            "funding": [
+                {
+                    "url": "https://symfony.com/sponsor",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://github.com/fabpot",
+                    "type": "github"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/symfony/symfony",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2023-02-14T08:44:56+00:00"
+        },
+        {
             "name": "symfony/polyfill-ctype",
             "version": "v1.27.0",
             "source": {
@@ -7369,6 +8450,345 @@
                 }
             ],
             "time": "2023-02-21T14:21:02+00:00"
+        },
+        {
+            "name": "doctrine/cache",
+            "version": "2.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/cache.git",
+                "reference": "1ca8f21980e770095a31456042471a57bc4c68fb"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/1ca8f21980e770095a31456042471a57bc4c68fb",
+                "reference": "1ca8f21980e770095a31456042471a57bc4c68fb",
+                "shasum": ""
+            },
+            "require": {
+                "php": "~7.1 || ^8.0"
+            },
+            "conflict": {
+                "doctrine/common": ">2.2,<2.4"
+            },
+            "require-dev": {
+                "cache/integration-tests": "dev-master",
+                "doctrine/coding-standard": "^9",
+                "phpunit/phpunit": "^7.5 || ^8.5 || ^9.5",
+                "psr/cache": "^1.0 || ^2.0 || ^3.0",
+                "symfony/cache": "^4.4 || ^5.4 || ^6",
+                "symfony/var-exporter": "^4.4 || ^5.4 || ^6"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Common\\Cache\\": "lib/Doctrine/Common/Cache"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                }
+            ],
+            "description": "PHP Doctrine Cache library is a popular cache implementation that supports many different drivers such as redis, memcache, apc, mongodb and others.",
+            "homepage": "https://www.doctrine-project.org/projects/cache.html",
+            "keywords": [
+                "abstraction",
+                "apcu",
+                "cache",
+                "caching",
+                "couchdb",
+                "memcached",
+                "php",
+                "redis",
+                "xcache"
+            ],
+            "support": {
+                "issues": "https://github.com/doctrine/cache/issues",
+                "source": "https://github.com/doctrine/cache/tree/2.2.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.doctrine-project.org/sponsorship.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.patreon.com/phpdoctrine",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Fcache",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-05-20T20:07:39+00:00"
+        },
+        {
+            "name": "doctrine/dbal",
+            "version": "3.6.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/dbal.git",
+                "reference": "57815c7bbcda3cd18871d253c1dd8cbe56f8526e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/57815c7bbcda3cd18871d253c1dd8cbe56f8526e",
+                "reference": "57815c7bbcda3cd18871d253c1dd8cbe56f8526e",
+                "shasum": ""
+            },
+            "require": {
+                "composer-runtime-api": "^2",
+                "doctrine/cache": "^1.11|^2.0",
+                "doctrine/deprecations": "^0.5.3|^1",
+                "doctrine/event-manager": "^1|^2",
+                "php": "^7.4 || ^8.0",
+                "psr/cache": "^1|^2|^3",
+                "psr/log": "^1|^2|^3"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "11.1.0",
+                "fig/log-test": "^1",
+                "jetbrains/phpstorm-stubs": "2022.3",
+                "phpstan/phpstan": "1.10.3",
+                "phpstan/phpstan-strict-rules": "^1.5",
+                "phpunit/phpunit": "9.6.4",
+                "psalm/plugin-phpunit": "0.18.4",
+                "squizlabs/php_codesniffer": "3.7.2",
+                "symfony/cache": "^5.4|^6.0",
+                "symfony/console": "^4.4|^5.4|^6.0",
+                "vimeo/psalm": "4.30.0"
+            },
+            "suggest": {
+                "symfony/console": "For helpful console commands such as SQL execution and import of files."
+            },
+            "bin": [
+                "bin/doctrine-dbal"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\DBAL\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                }
+            ],
+            "description": "Powerful PHP database abstraction layer (DBAL) with many features for database schema introspection and management.",
+            "homepage": "https://www.doctrine-project.org/projects/dbal.html",
+            "keywords": [
+                "abstraction",
+                "database",
+                "db2",
+                "dbal",
+                "mariadb",
+                "mssql",
+                "mysql",
+                "oci8",
+                "oracle",
+                "pdo",
+                "pgsql",
+                "postgresql",
+                "queryobject",
+                "sasql",
+                "sql",
+                "sqlite",
+                "sqlserver",
+                "sqlsrv"
+            ],
+            "support": {
+                "issues": "https://github.com/doctrine/dbal/issues",
+                "source": "https://github.com/doctrine/dbal/tree/3.6.1"
+            },
+            "funding": [
+                {
+                    "url": "https://www.doctrine-project.org/sponsorship.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.patreon.com/phpdoctrine",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Fdbal",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2023-03-02T19:26:24+00:00"
+        },
+        {
+            "name": "doctrine/deprecations",
+            "version": "v1.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/deprecations.git",
+                "reference": "0e2a4f1f8cdfc7a92ec3b01c9334898c806b30de"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/deprecations/zipball/0e2a4f1f8cdfc7a92ec3b01c9334898c806b30de",
+                "reference": "0e2a4f1f8cdfc7a92ec3b01c9334898c806b30de",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1|^8.0"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^9",
+                "phpunit/phpunit": "^7.5|^8.5|^9.5",
+                "psr/log": "^1|^2|^3"
+            },
+            "suggest": {
+                "psr/log": "Allows logging deprecations via PSR-3 logger implementation"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Deprecations\\": "lib/Doctrine/Deprecations"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A small layer on top of trigger_error(E_USER_DEPRECATED) or PSR-3 logging with options to disable all deprecations or selectively for packages.",
+            "homepage": "https://www.doctrine-project.org/",
+            "support": {
+                "issues": "https://github.com/doctrine/deprecations/issues",
+                "source": "https://github.com/doctrine/deprecations/tree/v1.0.0"
+            },
+            "time": "2022-05-02T15:47:09+00:00"
+        },
+        {
+            "name": "doctrine/event-manager",
+            "version": "2.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/event-manager.git",
+                "reference": "750671534e0241a7c50ea5b43f67e23eb5c96f32"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/event-manager/zipball/750671534e0241a7c50ea5b43f67e23eb5c96f32",
+                "reference": "750671534e0241a7c50ea5b43f67e23eb5c96f32",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^8.1"
+            },
+            "conflict": {
+                "doctrine/common": "<2.9"
+            },
+            "require-dev": {
+                "doctrine/coding-standard": "^10",
+                "phpstan/phpstan": "^1.8.8",
+                "phpunit/phpunit": "^9.5",
+                "vimeo/psalm": "^4.28"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Doctrine\\Common\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
+                },
+                {
+                    "name": "Roman Borschel",
+                    "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Benjamin Eberlei",
+                    "email": "kontakt@beberlei.de"
+                },
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                },
+                {
+                    "name": "Johannes Schmitt",
+                    "email": "schmittjoh@gmail.com"
+                },
+                {
+                    "name": "Marco Pivetta",
+                    "email": "ocramius@gmail.com"
+                }
+            ],
+            "description": "The Doctrine Event Manager is a simple PHP event system that was built to be used with the various Doctrine projects.",
+            "homepage": "https://www.doctrine-project.org/projects/event-manager.html",
+            "keywords": [
+                "event",
+                "event dispatcher",
+                "event manager",
+                "event system",
+                "events"
+            ],
+            "support": {
+                "issues": "https://github.com/doctrine/event-manager/issues",
+                "source": "https://github.com/doctrine/event-manager/tree/2.0.0"
+            },
+            "funding": [
+                {
+                    "url": "https://www.doctrine-project.org/sponsorship.html",
+                    "type": "custom"
+                },
+                {
+                    "url": "https://www.patreon.com/phpdoctrine",
+                    "type": "patreon"
+                },
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/doctrine%2Fevent-manager",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-10-12T20:59:15+00:00"
         },
         {
             "name": "fakerphp/faker",

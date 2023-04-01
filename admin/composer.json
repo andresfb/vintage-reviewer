@@ -6,23 +6,30 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "cviebrock/eloquent-sluggable": "^10.0",
+        "dariusiii/tmdb-laravel": "^6.0",
         "filament/filament": "^2.0",
+        "filament/spatie-laravel-media-library-plugin": "^2.0",
+        "filament/spatie-laravel-tags-plugin": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.0",
+        "laravel/horizon": "^5.15",
         "laravel/sanctum": "^3.2",
         "laravel/tinker": "^2.8",
+        "league/flysystem-aws-s3-v3": "^3.12",
         "spatie/laravel-medialibrary": "^10.0.0",
         "spatie/laravel-tags": "^4.3"
     },
     "require-dev": {
-        "roave/security-advisories": "dev-latest",
         "barryvdh/laravel-debugbar": "^3.8",
+        "doctrine/dbal": "^3.6",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.21",
         "mockery/mockery": "^1.4.4",
         "nunomaduro/collision": "^7.0",
         "phpunit/phpunit": "^10.0",
+        "roave/security-advisories": "dev-latest",
         "spatie/laravel-ignition": "^2.0"
     },
     "autoload": {
