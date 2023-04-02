@@ -15,25 +15,40 @@ class Movie extends Model implements HasMedia
 {
     use SoftDeletes, Sluggable, HasTags, InteractsWithMedia;
 
+    // TODO: remove the two rating fields and use a single one
+
     protected $fillable = [
+        'tmdb_id',
+        'imdb_id',
+        'emby_id',
         'title',
         'slug',
         'overview',
         'release_date',
-        'tmdb_id',
-        'imdb_id',
         'tag_line',
         'description',
         'story_line',
         'synopsis',
         'language',
-        'popularity',
-        'rating',
+        'rated',
+        'tmdb_rating',
+        'imdb_rating',
+        'runtime',
+        'trailer',
     ];
 
     protected $casts = [
+        'is_complete' => 'boolean',
+        'runtime' => 'integer',
         'release_date' => 'date',
     ];
+
+    protected static function booted(): void
+    {
+        static::saved(static function (Movie $movie) {
+            $movie->is_complete = !$movie->hasMissingInfo();
+        });
+    }
 
     public function sluggable(): array
     {
@@ -44,7 +59,7 @@ class Movie extends Model implements HasMedia
         ];
     }
 
-    protected function popularity(): Attribute
+    protected function tmdbRating(): Attribute
     {
         return Attribute::make(
             get: static fn ($value) => $value / 100,
@@ -52,7 +67,7 @@ class Movie extends Model implements HasMedia
         );
     }
 
-    protected function rating(): Attribute
+    protected function imdbRating(): Attribute
     {
         return Attribute::make(
             get: static fn ($value) => $value / 100,
@@ -75,5 +90,21 @@ class Movie extends Model implements HasMedia
         $this->addMediaCollection('trailer')
             ->singleFile()
             ->useDisk('s3');
+    }
+
+    public function hasMissingInfo(): bool
+    {
+        return $this->overview === null
+            || $this->release_date === null
+            || $this->tag_line === null
+            || $this->description === null
+            || $this->story_line === null
+            || $this->synopsis === null
+            || $this->language === null
+            || $this->rated === null
+            || $this->tmdb_rating === null
+            || $this->imdb_rating === null
+            || $this->runtime === null
+            || $this->trailer === null;
     }
 }

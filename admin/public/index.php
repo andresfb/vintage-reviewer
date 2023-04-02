@@ -3,6 +3,12 @@
 use Illuminate\Contracts\Http\Kernel;
 use Illuminate\Http\Request;
 
+// TODO: check YouTube video is embeddable
+// https://github.com/lycheeverse/lychee/issues/214#issuecomment-819103393
+// sample 401 video: https://www.youtube.com/watch?v=uq092Ehcv4w
+
+date_default_timezone_set("America/New_York");
+
 define('LARAVEL_START', microtime(true));
 
 /*

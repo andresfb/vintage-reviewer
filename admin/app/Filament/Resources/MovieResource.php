@@ -32,25 +32,39 @@ class MovieResource extends Resource
             ->schema([
                 Forms\Components\Card::make()
                 ->schema([
-                    Forms\Components\Grid::make(2)
-                    ->schema([
-                        Forms\Components\TextInput::make('tmdb_id')
-                            ->label('TMDB Id')
-                            ->required()
-                            ->maxLength(255),
-                        Forms\Components\TextInput::make('imdb_id')
-                            ->label('IMDB Id')
-                            ->required()
-                            ->maxLength(255),
+                    Forms\Components\Grid::make()
+                        ->schema([
                         Forms\Components\TextInput::make('title')
                             ->required()
                             ->maxLength(255),
                         Forms\Components\DatePicker::make('release_date')
+                            ->timezone('America/New_York')
                             ->required(),
                     ]),
                     Forms\Components\Textarea::make('overview')
                         ->required()
                         ->maxLength(65535),
+                    SpatieTagsInput::make('tags')
+                        ->required(),
+                    Forms\Components\Grid::make(3)
+                        ->schema([
+                            Forms\Components\TextInput::make('tmdb_id')
+                                ->label('TMDB Id')
+                                ->maxLength(50),
+                            Forms\Components\TextInput::make('imdb_id')
+                                ->label('IMDB Id')
+                                ->maxLength(50),
+                            Forms\Components\TextInput::make('emby_id')
+                                ->label('Emby Id')
+                                ->maxLength(50),
+                        ]),
+                    Forms\Components\Grid::make()
+                        ->schema([
+                            Forms\Components\TextInput::make('rated')
+                                ->maxLength(5),
+                            Forms\Components\TextInput::make('runtime')
+                                ->maxLength(15),
+                        ]),
                     Forms\Components\Textarea::make('tag_line')
                         ->maxLength(65535),
                     Forms\Components\Textarea::make('description')
@@ -59,12 +73,26 @@ class MovieResource extends Resource
                         ->maxLength(65535),
                     Forms\Components\Textarea::make('synopsis')
                         ->maxLength(65535),
-                    Forms\Components\Grid::make(3)
+                    Forms\Components\Grid::make()
                         ->schema([
+                            Forms\Components\TextInput::make('tmdb_rating')
+                                ->label('TMDB Rating')
+                                ->maxLength(15),
+                            Forms\Components\TextInput::make('imdb_rating')
+                                ->label('IMDB Rating')
+                                ->maxLength(15),
                             Forms\Components\TextInput::make('language')
+                                ->maxLength(4),
+                            Forms\Components\TextInput::make('trailer_link')
+                                ->label('YouTube Trailer')
                                 ->maxLength(255),
-                            Forms\Components\TextInput::make('popularity'),
-                            Forms\Components\TextInput::make('rating'),
+                        ]),
+                    Repeater::make('themes')
+                        ->nullable()
+                        ->relationship()
+                        ->schema([
+                            Forms\Components\TextInput::make('title')
+                                ->maxLength(255),
                         ]),
                     Forms\Components\Grid::make()
                         ->schema([
@@ -75,14 +103,6 @@ class MovieResource extends Resource
                             SpatieMediaLibraryFileUpload::make('trailer')
                                 ->collection('trailer')
                                 ->disk('s3'),
-                        ]),
-                    SpatieTagsInput::make('tags'),
-                    Repeater::make('themes')
-                        ->relationship()
-                        ->schema([
-                            Forms\Components\TextInput::make('title')
-                                ->required()
-                                ->maxLength(255),
                         ]),
                 ])
             ]);
@@ -101,13 +121,24 @@ class MovieResource extends Resource
                     ->label('IMDB Id')
                     ->url(fn (Movie $record): string => config('imdb.movie_url') . $record->imdb_id)
                     ->openUrlInNewTab(),
+                Tables\Columns\TextColumn::make('emby_id')
+                    ->label('Emby Id')
+                    ->url(fn (Movie $record): string => config('emby.movie_url') . $record->emby_id)
+                    ->openUrlInNewTab(),
                 Tables\Columns\TextColumn::make('title')->sortable(),
                 Tables\Columns\TextColumn::make('language'),
-                Tables\Columns\TextColumn::make('popularity'),
-                Tables\Columns\TextColumn::make('rating'),
+                Tables\Columns\TextColumn::make('tmdb_rating')
+                    ->label('TMDB Rating'),
+                Tables\Columns\TextColumn::make('imdb_rating')
+                    ->label('IMDB Rating'),
                 Tables\Columns\TextColumn::make('release_date')
-                    ->date('Y')
+                    ->date('Y-m')
                     ->sortable(),
+                Tables\Columns\ToggleColumn::make('is_complete')
+                    ->disabled()
+                    ->label('Completed')
+                    ->sortable()
+                    ->searchable(),
             ])
             ->filters([
                 Tables\Filters\TrashedFilter::make(),
