@@ -7,6 +7,7 @@ use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
@@ -17,24 +18,7 @@ class Movie extends Model implements HasMedia
     use SoftDeletes, Sluggable, HasTags;
     use InteractsWithMedia, CascadeSoftDeletes;
 
-    protected $fillable = [
-        'tmdb_id',
-        'imdb_id',
-        'emby_id',
-        'title',
-        'slug',
-        'overview',
-        'release_date',
-        'tag_line',
-        'description',
-        'story_line',
-        'synopsis',
-        'language',
-        'rated',
-        'rating',
-        'runtime',
-        'trailer_link',
-    ];
+    protected $guarded = [];
 
     protected $casts = [
         'is_complete' => 'boolean',
@@ -54,6 +38,19 @@ class Movie extends Model implements HasMedia
         });
     }
 
+    protected function rating(): Attribute
+    {
+        return Attribute::make(
+            get: static fn ($value) => $value / 100,
+            set: static fn ($value) => $value * 100,
+        );
+    }
+
+    public function year(): string
+    {
+        return $this->release_date->format('Y');
+    }
+
     public function sluggable(): array
     {
         return [
@@ -63,24 +60,24 @@ class Movie extends Model implements HasMedia
         ];
     }
 
-    protected function rating(): Attribute
-    {
-        return Attribute::make(
-            get: static fn ($value) => $value / 100,
-            set: static fn ($value) => $value * 100,
-        );
-    }
-
     public function themes(): HasMany
     {
         return $this->hasMany(MovieTheme::class);
+    }
+
+    public function post(): HasOne
+    {
+        return $this->hasOne(Post::class);
     }
 
     public function registerMediaCollections(): void
     {
         $this->addMediaCollection('poster')
             ->singleFile()
-            ->withResponsiveImages()
+            ->useDisk('s3');
+
+        $this->addMediaCollection('backdrop')
+            ->singleFile()
             ->useDisk('s3');
 
         $this->addMediaCollection('trailer')
@@ -102,5 +99,11 @@ class Movie extends Model implements HasMedia
             || $this->imdb_rating === null
             || $this->runtime === null
             || $this->trailer === null;
+    }
+
+    public static function markUnused(int $movieId): void
+    {
+        $movie = self::findOrFail($movieId);
+        $movie->update(['used' => false]);
     }
 }

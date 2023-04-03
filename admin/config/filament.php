@@ -25,7 +25,7 @@ return [
     |
     */
 
-    'path' => env('FILAMENT_PATH', 'admin'),
+    'path' => env('FILAMENT_PATH', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -239,13 +239,13 @@ return [
         'footer' => [
             'should_show_logo' => false,
         ],
-        'max_content_width' => '7xl',
+        'max_content_width' => 'full',
         'notifications' => [
             'vertical_alignment' => 'top',
-            'alignment' => 'right',
+            'alignment' => 'center',
         ],
         'sidebar' => [
-            'is_collapsible_on_desktop' => false,
+            'is_collapsible_on_desktop' => true,
             'groups' => [
                 'are_collapsible' => true,
             ],

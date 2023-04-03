@@ -35,91 +35,124 @@ class MovieResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Card::make()
-                ->schema([
-                    Forms\Components\Grid::make()
-                        ->schema([
-                        Forms\Components\TextInput::make('title')
-                            ->required()
-                            ->maxLength(255),
-                        Forms\Components\DatePicker::make('release_date')
-                            ->timezone('America/New_York')
-                            ->required(),
-                    ]),
-                    Forms\Components\Textarea::make('overview')
-                        ->required()
-                        ->maxLength(65535),
-                    SpatieTagsInput::make('tags')
-                        ->required(),
-                    Forms\Components\Grid::make(3)
-                        ->schema([
-                            Forms\Components\TextInput::make('emby_id')
-                                ->label('Emby Id')
-                                ->maxLength(50),
-                            Forms\Components\TextInput::make('tmdb_id')
-                                ->label('TMDB Id')
-                                ->maxLength(50),
-                            Forms\Components\TextInput::make('imdb_id')
-                                ->label('IMDB Id')
-                                ->maxLength(50),
-                            Forms\Components\TextInput::make('rated')
-                                ->maxLength(20),
-                            Forms\Components\TextInput::make('runtime')
-                                ->maxLength(15),
-                            Forms\Components\TextInput::make('rating')
-                                ->maxLength(15),
-                        ]),
-                    Forms\Components\Grid::make()
-                        ->schema([
-                            Forms\Components\Textarea::make('tag_line')
-                                ->maxLength(65535),
-                            Forms\Components\Textarea::make('description')
-                                ->maxLength(65535),
-                            Forms\Components\Textarea::make('story_line')
-                                ->maxLength(65535),
-                            Forms\Components\Textarea::make('synopsis')
-                                ->maxLength(65535),
-                        ]),
-                    Forms\Components\Grid::make()
-                        ->schema([
-                            Forms\Components\TextInput::make('language')
-                                ->maxLength(4),
-                            Forms\Components\TextInput::make('trailer_link')
-                                ->label('YouTube Trailer')
-                                ->maxLength(255)
-                                ->suffixAction(fn (Movie $record, $state, Closure $set) => Action::make('download-trailer')
-                                    ->icon('heroicon-o-download')
-                                    ->action(function () use ($state, $record) {
-                                        if (blank($state)) {
-                                            Filament::notify('danger', 'Missing trailer link.');
-                                            return;
-                                        }
 
-                                        DownloadTrailerJob::dispatch($record->id, [$state]);
-                                    })
-                                    ->visible(fn () => $state !== null)
-                                    ->requiresConfirmation()
-                                ),
-                        ]),
-                    Repeater::make('themes')
-                        ->nullable()
-                        ->relationship()
-                        ->schema([
-                            Forms\Components\TextInput::make('title')
-                                ->maxLength(255),
-                        ]),
-                    Forms\Components\Grid::make()
-                        ->schema([
-                            SpatieMediaLibraryFileUpload::make('poster')
-                                ->collection('poster')
-                                ->responsiveImages()
-                                ->disk('s3'),
-                            SpatieMediaLibraryFileUpload::make('trailer')
-                                ->collection('trailer')
-                                ->disk('s3'),
-                        ]),
-                ])
-            ]);
+                Forms\Components\Group::make()
+                    ->schema([
+                        Forms\Components\Card::make()
+                            ->schema([
+                                Forms\Components\Grid::make()
+                                    ->schema([
+                                        Forms\Components\TextInput::make('title')
+                                            ->required()
+                                            ->maxLength(255),
+                                        Forms\Components\DatePicker::make('release_date')
+                                            ->timezone('America/New_York')
+                                            ->required(),
+                                    ]),
+                                Forms\Components\Textarea::make('overview')
+                                    ->required()
+                                    ->maxLength(65535),
+                                SpatieTagsInput::make('tags')->required(),
+                            ]),
+                    ])->columns(1),
+
+                Forms\Components\Group::make()
+                    ->schema([
+                        Forms\Components\Card::make()
+                            ->schema([
+                                Forms\Components\Grid::make()
+                                    ->schema([
+                                        Forms\Components\TextInput::make('emby_id')
+                                            ->label('Emby Id')
+                                            ->maxLength(50),
+                                        Forms\Components\TextInput::make('tmdb_id')
+                                            ->label('TMDB Id')
+                                            ->maxLength(50),
+                                        Forms\Components\TextInput::make('imdb_id')
+                                            ->label('IMDB Id')
+                                            ->maxLength(50),
+                                        Forms\Components\TextInput::make('rated')
+                                            ->maxLength(20),
+                                        Forms\Components\TextInput::make('runtime')
+                                            ->maxLength(15),
+                                        Forms\Components\TextInput::make('rating')
+                                            ->maxLength(15),
+                                        Forms\Components\TextInput::make('language')
+                                            ->maxLength(4),
+                                        Forms\Components\TextInput::make('trailer_link')
+                                            ->label('YouTube Trailer')
+                                            ->maxLength(255)
+                                            ->suffixAction(fn (?Movie $record, $state, Closure $set) => Action::make('download-trailer')
+                                                ->icon('heroicon-o-download')
+                                                ->action(function () use ($state, $record) {
+                                                    if ($record === null || blank($state)) {
+                                                        Filament::notify('danger', 'Missing trailer link.');
+                                                        return;
+                                                    }
+
+                                                    DownloadTrailerJob::dispatch($record->id, [$state]);
+                                                })
+                                                ->visible(fn () => $state !== null)
+                                                ->requiresConfirmation()
+                                            ),
+                                    ]),
+
+                            ])
+                    ]),
+
+                Forms\Components\Group::make()
+                    ->schema([
+                        Forms\Components\Card::make()
+                            ->schema([
+                            Forms\Components\Grid::make()
+                                ->schema([
+                                    Forms\Components\Textarea::make('tag_line')
+                                        ->maxLength(65535),
+                                    Forms\Components\Textarea::make('description')
+                                        ->maxLength(65535),
+                                    Forms\Components\Textarea::make('story_line')
+                                        ->maxLength(65535),
+                                    Forms\Components\Textarea::make('synopsis')
+                                        ->maxLength(65535),
+                                ]),
+                        ])
+                    ])->columnSpanFull(),
+
+
+                Forms\Components\Group::make()
+                    ->schema([
+                        Forms\Components\Card::make()
+                            ->schema([
+                                Repeater::make('themes')
+                                    ->nullable()
+                                    ->relationship()
+                                    ->schema([
+                                        Forms\Components\TextInput::make('title')
+                                            ->maxLength(255),
+                                    ]),
+                            ]),
+                    ])->columnSpanFull(),
+
+                Forms\Components\Group::make()
+                    ->schema([
+                        Forms\Components\Card::make()
+                            ->schema([
+                                Forms\Components\Grid::make(3)
+                                    ->schema([
+                                        SpatieMediaLibraryFileUpload::make('poster')
+                                            ->collection('poster')
+                                            ->disk('s3'),
+                                        SpatieMediaLibraryFileUpload::make('backdrop')
+                                            ->collection('backdrop')
+                                            ->disk('s3'),
+                                        SpatieMediaLibraryFileUpload::make('trailer')
+                                            ->collection('trailer')
+                                            ->disk('s3'),
+                                    ]),
+                            ]),
+                    ])->columnSpanFull(),
+
+            ])->columns(2);
     }
 
     public static function table(Table $table): Table
