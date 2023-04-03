@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands;
 
-use App\Services\EmbyService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
 
@@ -17,9 +16,6 @@ class TestAppCommand extends Command
         try {
             $this->line('');
             $this->info('Starting tests');
-
-            $service = resolve(EmbyService::class);
-            $service->importMovies();
 
             $this->line('');
             $this->info("Done.\n");

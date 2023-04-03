@@ -10,7 +10,6 @@ return [
             'Recursive' => 'true',
             'IncludeItemTypes' => 'Movie',
             'ExcludeItemTypes' => 'Episode',
-            'ParentId' => env('EMBY_COLLECTION_ID'),
             "fields" => implode(',', [
                 'Overview',
                 'Genres',
@@ -33,5 +32,7 @@ return [
     'movie_url' => env('EMBY_SERVER_MOVIE_PAGE'),
 
     'user_id' => env('EMBY_USER_ID'),
+
+    'default_collection_id' => env('EMBY_COLLECTION_ID'),
 
 ];

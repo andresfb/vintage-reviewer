@@ -10,6 +10,8 @@ class ListMovies extends ListRecords
 {
     protected static string $resource = MovieResource::class;
 
+    protected ?string $maxContentWidth = 'full';
+
     protected function getActions(): array
     {
         return [

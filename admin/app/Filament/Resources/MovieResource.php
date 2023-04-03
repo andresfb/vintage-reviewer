@@ -3,7 +3,10 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\MovieResource\Pages;
+use App\Jobs\DownloadTrailerJob;
 use App\Models\Movie;
+use Closure;
+use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Components\Repeater;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
@@ -15,6 +18,8 @@ use Filament\Tables;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Filters\Filter;
+use Filament\Forms\Components\Actions\Action;
 
 class MovieResource extends Resource
 {
@@ -48,44 +53,53 @@ class MovieResource extends Resource
                         ->required(),
                     Forms\Components\Grid::make(3)
                         ->schema([
+                            Forms\Components\TextInput::make('emby_id')
+                                ->label('Emby Id')
+                                ->maxLength(50),
                             Forms\Components\TextInput::make('tmdb_id')
                                 ->label('TMDB Id')
                                 ->maxLength(50),
                             Forms\Components\TextInput::make('imdb_id')
                                 ->label('IMDB Id')
                                 ->maxLength(50),
-                            Forms\Components\TextInput::make('emby_id')
-                                ->label('Emby Id')
-                                ->maxLength(50),
-                        ]),
-                    Forms\Components\Grid::make()
-                        ->schema([
                             Forms\Components\TextInput::make('rated')
-                                ->maxLength(5),
+                                ->maxLength(20),
                             Forms\Components\TextInput::make('runtime')
                                 ->maxLength(15),
+                            Forms\Components\TextInput::make('rating')
+                                ->maxLength(15),
                         ]),
-                    Forms\Components\Textarea::make('tag_line')
-                        ->maxLength(65535),
-                    Forms\Components\Textarea::make('description')
-                        ->maxLength(65535),
-                    Forms\Components\Textarea::make('story_line')
-                        ->maxLength(65535),
-                    Forms\Components\Textarea::make('synopsis')
-                        ->maxLength(65535),
                     Forms\Components\Grid::make()
                         ->schema([
-                            Forms\Components\TextInput::make('tmdb_rating')
-                                ->label('TMDB Rating')
-                                ->maxLength(15),
-                            Forms\Components\TextInput::make('imdb_rating')
-                                ->label('IMDB Rating')
-                                ->maxLength(15),
+                            Forms\Components\Textarea::make('tag_line')
+                                ->maxLength(65535),
+                            Forms\Components\Textarea::make('description')
+                                ->maxLength(65535),
+                            Forms\Components\Textarea::make('story_line')
+                                ->maxLength(65535),
+                            Forms\Components\Textarea::make('synopsis')
+                                ->maxLength(65535),
+                        ]),
+                    Forms\Components\Grid::make()
+                        ->schema([
                             Forms\Components\TextInput::make('language')
                                 ->maxLength(4),
                             Forms\Components\TextInput::make('trailer_link')
                                 ->label('YouTube Trailer')
-                                ->maxLength(255),
+                                ->maxLength(255)
+                                ->suffixAction(fn (Movie $record, $state, Closure $set) => Action::make('download-trailer')
+                                    ->icon('heroicon-o-download')
+                                    ->action(function () use ($state, $record) {
+                                        if (blank($state)) {
+                                            Filament::notify('danger', 'Missing trailer link.');
+                                            return;
+                                        }
+
+                                        DownloadTrailerJob::dispatch($record->id, [$state]);
+                                    })
+                                    ->visible(fn () => $state !== null)
+                                    ->requiresConfirmation()
+                                ),
                         ]),
                     Repeater::make('themes')
                         ->nullable()
@@ -113,6 +127,10 @@ class MovieResource extends Resource
         return $table
             ->columns([
                 SpatieMediaLibraryImageColumn::make('poster')->collection('poster'),
+                Tables\Columns\TextColumn::make('emby_id')
+                    ->label('Emby Id')
+                    ->url(fn (Movie $record): string => config('emby.movie_url') . $record->emby_id)
+                    ->openUrlInNewTab(),
                 Tables\Columns\TextColumn::make('tmdb_id')
                     ->label('TMDB Id')
                     ->url(fn (Movie $record): string => config('tmdb.movie_url') . $record->tmdb_id)
@@ -121,18 +139,18 @@ class MovieResource extends Resource
                     ->label('IMDB Id')
                     ->url(fn (Movie $record): string => config('imdb.movie_url') . $record->imdb_id)
                     ->openUrlInNewTab(),
-                Tables\Columns\TextColumn::make('emby_id')
-                    ->label('Emby Id')
-                    ->url(fn (Movie $record): string => config('emby.movie_url') . $record->emby_id)
-                    ->openUrlInNewTab(),
                 Tables\Columns\TextColumn::make('title')->sortable(),
-                Tables\Columns\TextColumn::make('language'),
-                Tables\Columns\TextColumn::make('tmdb_rating')
-                    ->label('TMDB Rating'),
-                Tables\Columns\TextColumn::make('imdb_rating')
-                    ->label('IMDB Rating'),
+                Tables\Columns\TextColumn::make('rated'),
+                Tables\Columns\TextColumn::make('rating')
+                    ->label('Rating')
+                    ->sortable(),
+                Tables\Columns\TextColumn::make('runtime')
+                    ->sortable()
+                    ->getStateUsing(function (Movie $record): string {
+                        return gmdate('H:i', $record->runtime);
+                    }),
                 Tables\Columns\TextColumn::make('release_date')
-                    ->date('Y-m')
+                    ->date('m-Y')
                     ->sortable(),
                 Tables\Columns\ToggleColumn::make('is_complete')
                     ->disabled()
@@ -141,7 +159,9 @@ class MovieResource extends Resource
                     ->searchable(),
             ])
             ->filters([
-                Tables\Filters\TrashedFilter::make(),
+                Filter::make('is_complete')
+                    ->label('Completed')
+                    ->query(fn (Builder $query): Builder => $query->where('is_complete', true))
             ])
             ->actions([
                 Tables\Actions\ViewAction::make(),

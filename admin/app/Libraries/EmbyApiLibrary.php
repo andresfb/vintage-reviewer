@@ -17,24 +17,24 @@ class EmbyApiLibrary
         $this->endPoints = [
             'get_collection_items' => sprintf(
                 $baseUrl,
-                "Users/". config('emby.user_id'). "/Items",
+                'Users/'. config('emby.user_id'). '/Items',
                 http_build_query(config('emby.api.collection_url_strings')),
             ),
         ];
     }
 
-    public function getCollectionItems(): array
+    public function getCollectionItems(string $collectionId): ?object
     {
         try {
             $response = $this->getResponse(
-                $this->endPoints['get_collection_items'],
+                $this->endPoints['get_collection_items'] . "&ParentId=$collectionId"
             );
         } catch (Exception $e) {
             Log::error('@EmbyApiService.getCollectionItems: ' . $e->getMessage());
-            return [];
+            return null;
         }
 
-        return $response->Items;
+        return $response;
     }
 
     /**

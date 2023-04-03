@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Cviebrock\EloquentSluggable\Sluggable;
+use Dyrynda\Database\Support\CascadeSoftDeletes;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -13,9 +14,8 @@ use Spatie\Tags\HasTags;
 
 class Movie extends Model implements HasMedia
 {
-    use SoftDeletes, Sluggable, HasTags, InteractsWithMedia;
-
-    // TODO: remove the two rating fields and use a single one
+    use SoftDeletes, Sluggable, HasTags;
+    use InteractsWithMedia, CascadeSoftDeletes;
 
     protected $fillable = [
         'tmdb_id',
@@ -31,16 +31,20 @@ class Movie extends Model implements HasMedia
         'synopsis',
         'language',
         'rated',
-        'tmdb_rating',
-        'imdb_rating',
+        'rating',
         'runtime',
-        'trailer',
+        'trailer_link',
     ];
 
     protected $casts = [
         'is_complete' => 'boolean',
         'runtime' => 'integer',
         'release_date' => 'date',
+    ];
+
+    protected array $cascadeDeletes = [
+        'media',
+        'themes',
     ];
 
     protected static function booted(): void
@@ -59,15 +63,7 @@ class Movie extends Model implements HasMedia
         ];
     }
 
-    protected function tmdbRating(): Attribute
-    {
-        return Attribute::make(
-            get: static fn ($value) => $value / 100,
-            set: static fn ($value) => $value * 100,
-        );
-    }
-
-    protected function imdbRating(): Attribute
+    protected function rating(): Attribute
     {
         return Attribute::make(
             get: static fn ($value) => $value / 100,

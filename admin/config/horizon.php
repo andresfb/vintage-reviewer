@@ -212,7 +212,7 @@ return [
                 'balance' => 'auto',
                 'minProcesses' => 1,
                 'maxProcesses' => 5,
-                'timeout' => 900,
+                'timeout' => 1200,
                 'tries' => 1,
             ],
         ],

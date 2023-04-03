@@ -20,10 +20,9 @@ return new class extends Migration {
             $table->text('description')->nullable();
             $table->text('story_line')->nullable();
             $table->text('synopsis')->nullable();
-            $table->string('rated', 5)->nullable();
+            $table->string('rated', 20)->nullable();
             $table->string('language', 4)->nullable();
-            $table->integer('tmdb_rating')->nullable();
-            $table->integer('imdb_rating')->nullable();
+            $table->integer('rating')->nullable();
             $table->integer('runtime')->nullable();
             $table->string('trailer_link')->nullable();
             $table->boolean('is_complete')->default(false);
