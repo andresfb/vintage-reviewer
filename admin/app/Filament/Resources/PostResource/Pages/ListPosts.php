@@ -24,6 +24,7 @@ class ListPosts extends ListRecords
                         $movie = $movieService->getRandomMovie();
                         if (!$movie) {
                             Filament::notify('danger', 'No movies available');
+
                             return;
                         }
 
@@ -35,8 +36,8 @@ class ListPosts extends ListRecords
 
                         $this->redirect(route('filament.resources.posts.edit', $post->id));
                     } catch (\Exception $e) {
-                        Log::error('Error creating post: ' . $e->getMessage());
-                        Filament::notify('danger', "Error creating post: " . $e->getMessage());
+                        Log::error('Error creating post: '.$e->getMessage());
+                        Filament::notify('danger', 'Error creating post: '.$e->getMessage());
                     }
                 })->requiresConfirmation(),
         ];

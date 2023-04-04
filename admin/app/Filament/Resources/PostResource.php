@@ -41,7 +41,7 @@ class PostResource extends Resource
                                             ->required()
                                             ->columnSpan(1),
                                     ]),
-                            ])
+                            ]),
                     ])->columnSpanFull(),
                 Forms\Components\Group::make()
                     ->schema([
@@ -83,13 +83,13 @@ class PostResource extends Resource
                                     ->responsiveImages()
                                     ->disk('s3')
                                     ->columnSpan(2),
-                            ])
+                            ]),
                     ])->columnSpanFull(),
 
                 Forms\Components\Card::make()
                     ->schema([
                         Forms\Components\MarkdownEditor::make('content'),
-                    ])->columnSpanFull()
+                    ])->columnSpanFull(),
             ]);
     }
 

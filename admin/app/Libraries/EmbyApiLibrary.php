@@ -17,7 +17,7 @@ class EmbyApiLibrary
         $this->endPoints = [
             'get_collection_items' => sprintf(
                 $baseUrl,
-                'Users/'. config('emby.user_id'). '/Items',
+                'Users/'.config('emby.user_id').'/Items',
                 http_build_query(config('emby.api.collection_url_strings')),
             ),
         ];
@@ -27,10 +27,11 @@ class EmbyApiLibrary
     {
         try {
             $response = $this->getResponse(
-                $this->endPoints['get_collection_items'] . "&ParentId=$collectionId"
+                $this->endPoints['get_collection_items']."&ParentId=$collectionId"
             );
         } catch (Exception $e) {
-            Log::error('@EmbyApiService.getCollectionItems: ' . $e->getMessage());
+            Log::error('@EmbyApiService.getCollectionItems: '.$e->getMessage());
+
             return null;
         }
 

@@ -55,8 +55,8 @@ class Movie extends Model implements HasMedia
     {
         return [
             'slug' => [
-                'source' => 'title'
-            ]
+                'source' => 'title',
+            ],
         ];
     }
 

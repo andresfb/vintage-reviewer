@@ -25,6 +25,7 @@ class EmbyService
         $movies = $this->library->getCollectionItems($collectionId);
         if ($movies === null || empty($movies->Items)) {
             Log::error('@EmbyService.importMovies: No movies found in collection');
+
             return;
         }
 
@@ -43,7 +44,7 @@ class EmbyService
         [$tmdbId, $imdbId] = $this->getProviderIds($movie);
 
         $record = Movie::updateOrCreate([
-            'emby_id' => $movie->Id
+            'emby_id' => $movie->Id,
         ], [
             'title' => $movie->Name,
             'overview' => $movie->Overview,
@@ -98,7 +99,7 @@ class EmbyService
         }
 
         if (!empty($movie->CriticRating)) {
-            $ratings->add(($movie->CriticRating/10));
+            $ratings->add(($movie->CriticRating / 10));
         }
 
         return $ratings->avg();
@@ -135,6 +136,7 @@ class EmbyService
         $this->outputLine('Loading poster... ');
         if (empty($movie->ImageTags->Primary)) {
             $this->outputLine('No poster found');
+
             return;
         }
 
@@ -150,8 +152,9 @@ class EmbyService
             $record->addMediaFromUrl($url)
                 ->toMediaCollection('poster');
         } catch (Exception $e) {
-            Log::error('@EmbyService.savePoster: ' . $e->getMessage());
+            Log::error('@EmbyService.savePoster: '.$e->getMessage());
             $this->outputLine("Error loading poster for $movie->Name {$e->getMessage()}");
+
             return;
         }
     }
@@ -161,6 +164,7 @@ class EmbyService
         $this->outputLine('Loading backdrop... ');
         if (empty($movie->BackdropImageTags)) {
             $this->outputLine('No backdrop found');
+
             return;
         }
 
@@ -168,7 +172,7 @@ class EmbyService
             config('emby.api.url'),
             "Items/{$movie->Id}/Images/Backdrop",
             http_build_query([
-                'tag' => $movie->BackdropImageTags[0]
+                'tag' => $movie->BackdropImageTags[0],
             ]),
         );
 
@@ -176,8 +180,9 @@ class EmbyService
             $record->addMediaFromUrl($url)
                 ->toMediaCollection('backdrop');
         } catch (Exception $e) {
-            Log::error('@EmbyService.saveBackdrop: ' . $e->getMessage());
+            Log::error('@EmbyService.saveBackdrop: '.$e->getMessage());
             $this->outputLine("Error loading backdrop for $movie->Name {$e->getMessage()}");
+
             return;
         }
     }
@@ -191,6 +196,7 @@ class EmbyService
         $this->outputLine('Loading trailer... ');
         if (empty($movie->RemoteTrailers)) {
             $this->outputLine('No trailer found');
+
             return;
         }
 
@@ -218,6 +224,6 @@ class EmbyService
             return;
         }
 
-        echo $message . PHP_EOL;
+        echo $message.PHP_EOL;
     }
 }

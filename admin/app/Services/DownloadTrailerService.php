@@ -34,10 +34,11 @@ class DownloadTrailerService
         foreach ($trailerLinks as $trailerLink) {
             $result = Http::accept('application/json')
                 ->baseUrl(config('youtube.embeddable_url'))
-                ->get("?" . http_build_query(['url' => $trailerLink]));
+                ->get('?'.http_build_query(['url' => $trailerLink]));
 
             if ($result->status() !== 200) {
                 Log::error("The trailer is no longer available: $trailerLink");
+
                 continue;
             }
 
@@ -60,11 +61,10 @@ class DownloadTrailerService
 
     public function checkDownload(string $downloadFolder): array
     {
-        $files = glob($downloadFolder . "/*.mp4");
+        $files = glob($downloadFolder.'/*.mp4');
         if (count($files) === 0) {
             return [];
         }
-
 
         return [true, $files[0]];
     }

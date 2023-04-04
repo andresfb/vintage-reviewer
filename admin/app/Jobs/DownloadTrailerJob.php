@@ -27,7 +27,7 @@ class DownloadTrailerJob implements ShouldQueue
         try {
             $this->service->download($this->movieId, $this->trailerLinks);
         } catch (Exception $e) {
-            Log::error('@DownloadTrailerJob.handle: ' . $e->getMessage());
+            Log::error('@DownloadTrailerJob.handle: '.$e->getMessage());
         }
     }
 }

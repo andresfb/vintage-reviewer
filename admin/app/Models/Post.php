@@ -25,8 +25,8 @@ class Post extends Model implements HasMedia
     {
         return [
             'slug' => [
-                'source' => 'title'
-            ]
+                'source' => 'title',
+            ],
         ];
     }
 
@@ -46,7 +46,7 @@ class Post extends Model implements HasMedia
     {
         $this->addMediaCollection('image')
             ->acceptsMimeTypes([
-                'image/jpeg', 'image/png'
+                'image/jpeg', 'image/png',
             ])
             ->singleFile()
             ->withResponsiveImages()
@@ -54,7 +54,7 @@ class Post extends Model implements HasMedia
 
         $this->addMediaCollection('gallery')
             ->acceptsMimeTypes([
-                'image/jpeg', 'image/png'
+                'image/jpeg', 'image/png',
             ])
             ->withResponsiveImages()
             ->useDisk('s3');

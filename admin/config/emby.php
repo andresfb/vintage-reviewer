@@ -10,7 +10,7 @@ return [
             'Recursive' => 'true',
             'IncludeItemTypes' => 'Movie',
             'ExcludeItemTypes' => 'Episode',
-            "fields" => implode(',', [
+            'fields' => implode(',', [
                 'Overview',
                 'Genres',
                 'ProductionYear',
