@@ -20,6 +20,7 @@ use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Filament\Tables\Filters\Filter;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Tabs;
 
 class MovieResource extends Resource
 {
@@ -33,6 +34,8 @@ class MovieResource extends Resource
 
     public static function form(Form $form): Form
     {
+        $mediaDisk = config('media-library.disk_name');
+
         return $form
             ->schema([
 
@@ -82,6 +85,12 @@ class MovieResource extends Resource
                                         Forms\Components\TextInput::make('trailer_link')
                                             ->label('YouTube Trailer')
                                             ->maxLength(255)
+                                            ->prefixAction(fn (?Movie $record, $state, Closure $set) => Action::make('view_movie')
+                                                ->icon('heroicon-o-external-link')
+                                                ->url(fn () => $record->trailer_link)
+                                                ->openUrlInNewTab()
+                                                ->visible(fn () => $state !== null)
+                                            )
                                             ->suffixAction(fn (?Movie $record, $state, Closure $set) => Action::make('download-trailer')
                                                 ->icon('heroicon-o-download')
                                                 ->action(function () use ($state, $record) {
@@ -133,22 +142,28 @@ class MovieResource extends Resource
                             ]),
                     ])->columnSpanFull(),
 
-                Forms\Components\Group::make()
-                    ->schema([
-                        Forms\Components\Card::make()
+                Forms\Components\Tabs::make('Media')
+                    ->tabs([
+                        Tabs\Tab::make('Poster')
                             ->schema([
-                                Forms\Components\Grid::make(3)
-                                    ->schema([
-                                        SpatieMediaLibraryFileUpload::make('poster')
-                                            ->collection('poster')
-                                            ->disk('s3'),
-                                        SpatieMediaLibraryFileUpload::make('backdrop')
-                                            ->collection('backdrop')
-                                            ->disk('s3'),
-                                        SpatieMediaLibraryFileUpload::make('trailer')
-                                            ->collection('trailer')
-                                            ->disk('s3'),
-                                    ]),
+                                SpatieMediaLibraryFileUpload::make('poster')
+                                    ->label('')
+                                    ->collection('poster')
+                                    ->disk($mediaDisk),
+                                ]),
+                        Tabs\Tab::make('Backdrop')
+                            ->schema([
+                                SpatieMediaLibraryFileUpload::make('backdrop')
+                                    ->label('')
+                                    ->collection('backdrop')
+                                    ->disk($mediaDisk),
+                                ]),
+                        Tabs\Tab::make('Trailer')
+                            ->schema([
+                                SpatieMediaLibraryFileUpload::make('trailer')
+                                    ->label('')
+                                    ->collection('trailer')
+                                    ->disk($mediaDisk),
                             ]),
                     ])->columnSpanFull(),
 

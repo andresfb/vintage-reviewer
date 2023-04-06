@@ -2,9 +2,11 @@
 
 namespace App\Filament\Resources;
 
+use Closure;
 use App\Filament\Resources\PostResource\Pages;
 use App\Models\Post;
 use Filament\Forms;
+use Filament\Forms\Components\Actions\Action;
 use Filament\Forms\Components\SpatieMediaLibraryFileUpload;
 use Filament\Forms\Components\SpatieTagsInput;
 use Filament\Resources\Form;
@@ -14,6 +16,7 @@ use Filament\Tables;
 use Filament\Tables\Columns\SpatieMediaLibraryImageColumn;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Forms\Components\Tabs;
 
 class PostResource extends Resource
 {
@@ -27,6 +30,8 @@ class PostResource extends Resource
 
     public static function form(Form $form): Form
     {
+        $mediaDisk = config('media-library.disk_name');
+
         return $form
             ->schema([
                 Forms\Components\Group::make()
@@ -39,10 +44,17 @@ class PostResource extends Resource
                                             ->searchable()
                                             ->relationship('movie', 'title')
                                             ->required()
-                                            ->columnSpan(1),
+                                            ->columnSpan(1)
+                                            ->suffixAction(fn (?Post $record, $state, Closure $set) => Action::make('view_movie')
+                                                ->icon('heroicon-o-external-link')
+                                                ->url(fn () => route('filament.resources.movies.edit', $record->movie_id))
+                                                ->openUrlInNewTab()
+                                                ->visible(fn () => $state !== null)
+                                            ),
                                     ]),
                             ]),
                     ])->columnSpanFull(),
+
                 Forms\Components\Group::make()
                     ->schema([
                         Forms\Components\Card::make()
@@ -69,19 +81,26 @@ class PostResource extends Resource
                             ]),
                     ])->columnSpanFull(),
 
-                Forms\Components\Card::make()
-                    ->schema([
-                        Forms\Components\Grid::make(3)
+                Forms\Components\Tabs::make('Media')
+                    ->tabs([
+                        Tabs\Tab::make('Image')
                             ->schema([
                                 SpatieMediaLibraryFileUpload::make('image')
+                                    ->label('')
                                     ->collection('image')
                                     ->responsiveImages()
-                                    ->disk('s3')
+                                    ->disk($mediaDisk)
                                     ->columnSpan(1),
+                            ]),
+                        Tabs\Tab::make('Gallery')
+                            ->schema([
                                 SpatieMediaLibraryFileUpload::make('gallery')
+                                    ->label('')
+                                    ->multiple()
+                                    ->enableReordering()
                                     ->collection('gallery')
                                     ->responsiveImages()
-                                    ->disk('s3')
+                                    ->disk($mediaDisk)
                                     ->columnSpan(2),
                             ]),
                     ])->columnSpanFull(),

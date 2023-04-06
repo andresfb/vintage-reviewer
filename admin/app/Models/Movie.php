@@ -72,17 +72,19 @@ class Movie extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
+        $mediaDisk = config('media-library.disk_name');
+
         $this->addMediaCollection('poster')
             ->singleFile()
-            ->useDisk('s3');
+            ->useDisk($mediaDisk);
 
         $this->addMediaCollection('backdrop')
             ->singleFile()
-            ->useDisk('s3');
+            ->useDisk($mediaDisk);
 
         $this->addMediaCollection('trailer')
             ->singleFile()
-            ->useDisk('s3');
+            ->useDisk($mediaDisk);
     }
 
     public function hasMissingInfo(): bool

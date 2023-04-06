@@ -44,19 +44,21 @@ class Post extends Model implements HasMedia
 
     public function registerMediaCollections(): void
     {
+        $mediaDisk = config('media-library.disk_name');
+
         $this->addMediaCollection('image')
             ->acceptsMimeTypes([
                 'image/jpeg', 'image/png',
             ])
             ->singleFile()
             ->withResponsiveImages()
-            ->useDisk('s3');
+            ->useDisk($mediaDisk);
 
         $this->addMediaCollection('gallery')
             ->acceptsMimeTypes([
                 'image/jpeg', 'image/png',
             ])
             ->withResponsiveImages()
-            ->useDisk('s3');
+            ->useDisk($mediaDisk);
     }
 }

@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug');
             $table->string('tag_line')->nullable();
             $table->longText('content')->nullable();
-            $table->boolean('active')->default(true);
+            $table->boolean('active')->default(false);
             $table->dateTime('published_at')->nullable();
             $table->softDeletes();
             $table->timestamps();
