@@ -1,12 +1,16 @@
 <?php
 
+use App\Libraries\MediaFileNamer;
+use App\Libraries\MediaPathGenerator;
+use App\Models\Media;
+
 return [
 
     /*
      * The disk on which to store added files and derived images by default. Choose
      * one or more of the disks you've configured in config/filesystems.php.
      */
-    'disk_name' => env('MEDIA_DISK', 's3'),
+    'disk_name' => env('MEDIA_DISK', 'media'),
 
     /*
      * The maximum file size of an item in bytes.
@@ -34,7 +38,7 @@ return [
     /*
      * The fully qualified class name of the media model.
      */
-    'media_model' => Spatie\MediaLibrary\MediaCollections\Models\Media::class,
+    'media_model' => Media::class,
 
     /*
      * The fully qualified class name of the model used for temporary uploads.
@@ -58,12 +62,12 @@ return [
     /*
      * This is the class that is responsible for naming generated files.
      */
-    'file_namer' => Spatie\MediaLibrary\Support\FileNamer\DefaultFileNamer::class,
+    'file_namer' => MediaFileNamer::class,
 
     /*
      * The class that contains the strategy for determining a media file's path.
      */
-    'path_generator' => Spatie\MediaLibrary\Support\PathGenerator\DefaultPathGenerator::class,
+    'path_generator' => MediaPathGenerator::class,
 
     /*
      * Here you can specify which path generator should be used for the given class.

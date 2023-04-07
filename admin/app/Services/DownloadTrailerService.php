@@ -14,7 +14,7 @@ class DownloadTrailerService
     /**
      * @throws Exception
      */
-    public function download(int $movieId, array $trailerLinks): void
+    public function download(int $movieId, array $trailers): void
     {
         if (!config('youtube.enable_download')) {
             return;
@@ -31,19 +31,19 @@ class DownloadTrailerService
         }
 
         $found = false;
-        foreach ($trailerLinks as $trailerLink) {
+        foreach ($trailers as $trailer) {
             $result = Http::accept('application/json')
                 ->baseUrl(config('youtube.embeddable_url'))
-                ->get('?'.http_build_query(['url' => $trailerLink]));
+                ->get('?'.http_build_query(['url' => $trailer->Url]));
 
             if ($result->status() !== 200) {
-                Log::error("The trailer is no longer available: $trailerLink");
+                Log::error("The trailer is no longer available: $trailer->Url");
 
                 continue;
             }
 
             $options = config('youtube.download_options');
-            $cmd = "cd $downloadPath && $binFile $options $trailerLink > /dev/null &";
+            $cmd = "cd $downloadPath && $binFile $options $trailer->Url > /dev/null &";
 
             shell_exec($cmd);
             $found = true;
@@ -63,7 +63,7 @@ class DownloadTrailerService
     {
         $files = glob($downloadFolder.'/*.mp4');
         if (count($files) === 0) {
-            return [];
+            return [false, ''];
         }
 
         return [true, $files[0]];

@@ -17,7 +17,7 @@ class DownloadTrailerJob implements ShouldQueue
 
     private DownloadTrailerService $service;
 
-    public function __construct(private readonly int $movieId, private readonly array $trailerLinks)
+    public function __construct(private readonly int $movieId, private readonly array $trailers)
     {
         $this->service = resolve(DownloadTrailerService::class);
     }
@@ -25,7 +25,7 @@ class DownloadTrailerJob implements ShouldQueue
     public function handle(): void
     {
         try {
-            $this->service->download($this->movieId, $this->trailerLinks);
+            $this->service->download($this->movieId, $this->trailers);
         } catch (Exception $e) {
             Log::error('@DownloadTrailerJob.handle: '.$e->getMessage());
         }
