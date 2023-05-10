@@ -15,4 +15,11 @@ class MovieService
             ->inRandomOrder()
             ->first();
     }
+
+    public function getAllEmbyIds(): array
+    {
+        return Movie::select('emby_id')
+            ->pluck('emby_id')
+            ->toArray();
+    }
 }

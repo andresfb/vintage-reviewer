@@ -6,6 +6,7 @@ use App\Jobs\DownloadTrailerJob;
 use App\Libraries\EmbyApiLibrary;
 use App\Models\Movie;
 use Exception;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Log;
 
 class EmbyService
@@ -18,6 +19,18 @@ class EmbyService
 
     public function __construct(private readonly EmbyApiLibrary $library)
     {
+    }
+
+    public function getMovies(string $collectionId): Collection
+    {
+        $movies = $this->library->getCollectionItems($collectionId);
+        if ($movies === null || empty($movies->Items)) {
+            Log::error('@EmbyService.getMovies: No movies found in collection');
+
+            return collect();
+        }
+
+        return collect($movies->Items);
     }
 
     public function importMovies(string $collectionId): void
@@ -37,7 +50,7 @@ class EmbyService
         }
     }
 
-    private function importMovie(object $movie): void
+    public function importMovie(object $movie): void
     {
         $this->outputLine("Importing `$movie->Name`");
 

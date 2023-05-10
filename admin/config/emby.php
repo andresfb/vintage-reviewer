@@ -33,6 +33,10 @@ return [
 
     'user_id' => env('EMBY_USER_ID'),
 
-    'default_collection_id' => env('EMBY_COLLECTION_ID'),
+    'usable_collection_ids' => explode(',', env('EMBY_USABLE_COLLECTION_IDS')),
+
+    'default_collection_id' => env('EMBY_DEFAULT_COLLECTION_ID'),
+
+    'default_import_count' => env('EMBY_DEFAULT_IMPORT_COUNT'),
 
 ];
