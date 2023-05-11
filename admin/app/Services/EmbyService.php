@@ -56,12 +56,19 @@ class EmbyService
 
         [$tmdbId, $imdbId] = $this->getProviderIds($movie);
 
+        if (Movie::where('emby_id', $movie->Id)->exists()){
+            $this->outputLine("`$movie->Name` already exits...");
+            return;
+        }
+
         $record = Movie::updateOrCreate([
             'emby_id' => $movie->Id,
         ], [
             'title' => $movie->Name,
             'overview' => $movie->Overview,
-            'runtime' => ceil(($movie->RunTimeTicks / 10000000)),
+            'runtime' => !empty($movie->RunTimeTicks)
+                ? ceil(($movie->RunTimeTicks / 10000000))
+                : 0,
             'tag_line' => $this->getTagLine($movie),
             'rated' => $movie->OfficialRating ?? null,
             'release_date' => $this->getReleaseDate($movie),
