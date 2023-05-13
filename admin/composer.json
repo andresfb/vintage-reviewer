@@ -9,9 +9,6 @@
         "cviebrock/eloquent-sluggable": "^10.0",
         "dariusiii/tmdb-laravel": "^6.0",
         "dyrynda/laravel-cascade-soft-deletes": "^4.3",
-        "filament/filament": "^2.0",
-        "filament/spatie-laravel-media-library-plugin": "^2.0",
-        "filament/spatie-laravel-tags-plugin": "^2.0",
         "guzzlehttp/guzzle": "^7.2",
         "laravel/framework": "^10.0",
         "laravel/horizon": "^5.15",
@@ -19,12 +16,14 @@
         "laravel/tinker": "^2.8",
         "league/flysystem-aws-s3-v3": "^3.12",
         "spatie/laravel-medialibrary": "^10.0.0",
-        "spatie/laravel-tags": "^4.3"
+        "spatie/laravel-tags": "^4.3",
+        "spatie/laravel-view-models": "^1.5"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.8",
         "doctrine/dbal": "^3.6",
         "fakerphp/faker": "^1.9.1",
+        "laravel/breeze": "^1.21",
         "laravel/pint": "^1.8",
         "laravel/sail": "^1.21",
         "mockery/mockery": "^1.4.4",

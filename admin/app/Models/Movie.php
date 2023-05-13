@@ -22,6 +22,7 @@ class Movie extends Model implements HasMedia
 
     protected $casts = [
         'is_complete' => 'boolean',
+        'used' => 'boolean',
         'runtime' => 'integer',
         'release_date' => 'date',
     ];

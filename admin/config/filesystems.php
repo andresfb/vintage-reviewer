@@ -64,7 +64,7 @@ return [
 
         'media' => [
             'driver' => 'local',
-            'root'   => env('MEDIA_STORAGE_PATH'),
+            'root'   => env('MEDIA_STORAGE_PATH', storage_path('app/media')),
             'url'    => env('APP_URL').'/media',
         ],
 
@@ -83,7 +83,6 @@ return [
 
     'links' => [
         public_path('storage') => storage_path('app/public'),
-        env('MEDIA_STORAGE_PATH') => storage_path('app/media'),
     ],
 
 ];

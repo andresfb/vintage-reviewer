@@ -3,9 +3,17 @@
 namespace App\Services;
 
 use App\Models\Movie;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class MovieService
 {
+    public function getMovies(int $perPage): LengthAwarePaginator
+    {
+        return Movie::with('media')
+            ->oldest('release_date')
+            ->paginate($perPage);
+    }
+
     public function getRandomMovie(): ?Movie
     {
         return Movie::whereUsed(false)
