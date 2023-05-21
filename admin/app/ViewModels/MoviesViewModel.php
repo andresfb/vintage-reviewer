@@ -35,7 +35,7 @@ class MoviesViewModel extends ViewModel
                 'is_complete' => $movie->is_complete,
                 'used' => $movie->used,
                 'release_date' => $movie->release_date->format('m-Y'),
-                'media' => $this->getMedia($movie),
+                'image' => $this->getMedia($movie),
             ];
         });
 

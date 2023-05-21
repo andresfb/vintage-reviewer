@@ -33,7 +33,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
     Route::controller(MovieController::class)->group(function () {
         Route::get('/movies', 'index')->name('movies');
-
+        Route::get('/movies/create', 'create')->name('movies.create');
+        Route::get('/movies/{movie}', 'show')->name('movies.show');
+        Route::get('/movies/{movie}/edit', 'edit')->name('movies.edit');
     });
 });
 
